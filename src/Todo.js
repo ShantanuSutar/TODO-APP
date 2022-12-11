@@ -1,5 +1,4 @@
-import { Component } from "react";
-
+import React, { Component } from "react";
 class Todo extends Component {
     constructor(props) {
         super(props);
@@ -8,19 +7,21 @@ class Todo extends Component {
             task: this.props.task
         }
         this.handleRemove = this.handleRemove.bind(this);
-        this.toggleForm = this.toggleForm.bind(this);
+        this.toogleForm = this.toogleForm.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleUpdate = this.handleUpdate.bind(this);
     }
     handleRemove() {
         this.props.removeTodo(this.props.id)
     }
     toogleForm() {
-        this.setState({ isEditing: !this.state.isEditing });
+        this.setState({ isEditing: !this.state.isEditing })
     }
     handleUpdate(evt) {
         evt.preventDefault();
         //take new task data and pass up to parent
-
+        this.props.updateTodo(this.props.id, this.state.task);
+        this.setState({ isEditing: false })
     }
     handleChange(evt) {
         this.setState({
